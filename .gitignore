@@ -1,3 +1,17 @@
+*.class
+*.jar
+*.war
+*.ear
+*.com
+*.dll
+*.exe
+*.zip
+*.bak
+*.qvw
+*.qvd
+*.log
+
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
