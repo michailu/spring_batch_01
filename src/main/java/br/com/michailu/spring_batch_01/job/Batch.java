@@ -24,6 +24,7 @@ import br.com.michailu.spring_batch_01.modelo.Auxilio;
 import br.com.michailu.spring_batch_01.modelo.Dap;
 import br.com.michailu.spring_batch_01.processor.DapRowMapper;
 import br.com.michailu.spring_batch_01.processor.Processor;
+import br.com.michailu.spring_batch_01.tasklet.LimparTabelaAuxiliosTasklet;
 
 @Configuration
 @EnableBatchProcessing
@@ -46,19 +47,31 @@ public class Batch {
 	@Qualifier("controleTransacaoBancoApp")
 	private PlatformTransactionManager controleTransacao;
 
+	@Autowired
+	LimparTabelaAuxiliosTasklet limparTabelaAuxiliosTasklet;
+
 	@Bean
 	public Job springBatch01() {
 		return jobBuilderFactory
 				.get("springBatch01")
 				.incrementer(new RunIdIncrementer())
-				.start(step1())
+				.start(stepLimpezaTabela())
+				.next(stepProcessamento())
 				.build();
 	}
 
 	@Bean
-	public Step step1() {
+	public Step stepLimpezaTabela() {
 		return stepBuilderFactory
-				.get("batch 01")
+				.get("processamento limpeza da tabela auxilios")
+				.tasklet(limparTabelaAuxiliosTasklet)
+				.build();
+	}
+
+	@Bean
+	public Step stepProcessamento() {
+		return stepBuilderFactory
+				.get("processamento batch 01")
 				.<Dap, Auxilio>chunk(5)
 				.reader(reader())
 				.processor(processor())
