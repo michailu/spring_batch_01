@@ -3,12 +3,16 @@ package br.com.michailu.spring_batch_01.processor;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.batch.item.ItemProcessor;
 
 import br.com.michailu.spring_batch_01.modelo.Auxilio;
 import br.com.michailu.spring_batch_01.modelo.Dap;
 
 public class Processor implements ItemProcessor<Dap, Auxilio> {
+
+	private static final Logger LOGGER = LogManager.getLogger(Processor.class);
 
 	@Override
 	public Auxilio process(Dap item) throws Exception {
@@ -29,6 +33,9 @@ public class Processor implements ItemProcessor<Dap, Auxilio> {
 		auxilio.setNascimento(dataAtual); // Buscar no CNIS
 		auxilio.setInicio(dataAtual);
 		auxilio.setFim(dataAtual);
+
+		LOGGER.info("Processando DAP número " + item.getDap());
+
 		return auxilio;
 	}
 }
