@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * dois bancos de dados configurados, um para o spring batch e outro para aplicacao
  * utiliza log4j
  * disponivel no github
+ * writer pega do banco de dados, processor transforma e writer persiste no banco de dados
  */
 @SpringBootApplication
 public class SpringBatch01Application {
