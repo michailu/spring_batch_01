@@ -17,7 +17,11 @@ public class Processor implements ItemProcessor<Dap, Auxilio> {
 	@Override
 	public Auxilio process(Dap item) throws Exception {
 		if (item.getCpf().equals("0") || item.getCpf() == null || item.getCpf().equals("")) {
+			LOGGER.info("DAP " + item.getDap() + " foi descartada porque não possui um CPF válido.");
 			return null;
+		}
+		if (item.getNis().equals("0") || item.getNis() == null || item.getNis().equals("")) {
+			LOGGER.info("DAP " + item.getDap() + " não possui um NIT válido. NIS " + item.getNis());
 		}
 		Auxilio auxilio = new Auxilio();
 		auxilio.setCpf(item.getCpf());
@@ -33,9 +37,6 @@ public class Processor implements ItemProcessor<Dap, Auxilio> {
 		auxilio.setNascimento(dataAtual); // Buscar no CNIS
 		auxilio.setInicio(dataAtual);
 		auxilio.setFim(dataAtual);
-
-		LOGGER.info("Processando DAP número " + item.getDap());
-
 		return auxilio;
 	}
 }

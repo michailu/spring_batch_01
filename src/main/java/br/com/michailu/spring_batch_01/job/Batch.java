@@ -43,7 +43,7 @@ public class Batch {
 	private DataSource dataSource;
 
 	/**
-	 * Controle de transacao para o  banco de dados secundario 
+	 * Controle de transacao para o banco de dados secundario 
 	 */
 	@Autowired
 	@Qualifier("controleTransacaoBancoApp")
@@ -51,7 +51,7 @@ public class Batch {
 
 	@Autowired
 	LimparTabelaAuxiliosTasklet limparTabelaAuxiliosTasklet;
-	
+
 	@Bean
 	public Job springBatch01() {
 		return jobBuilderFactory
