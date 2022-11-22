@@ -41,7 +41,9 @@ public class Batch {
 	private DataSource dataSource;
 
 	/**
-	 * Controle de transacao para o banco de dados secundario 
+	 * Controle de transacao para o banco de dados secundario
+	 * O controleTransacaoBancoApp mencionado no qualifier precisa
+	 * ter a mesma descricao do metodo em DataSourceConfig.java
 	 */
 	@Autowired
 	@Qualifier("controleTransacaoBancoApp")

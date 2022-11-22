@@ -38,7 +38,8 @@ public class DataSourceConfig {
 	 * Necessario para que exista controle transacional no data source secundario
 	 */
 	@Bean
-	public PlatformTransactionManager controleTransacaoBancoApp(@Qualifier("beneficiosDatasource") DataSource dataSource) {
+	public PlatformTransactionManager controleTransacaoBancoApp(
+			@Qualifier("beneficiosDatasource") DataSource dataSource) {
 		return new DataSourceTransactionManager(dataSource);
 	}
 }
