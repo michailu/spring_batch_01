@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * application.properties externalizado
- * dois bancos de dados configurados, um para o spring batch e outro para aplicacao
+ * dois bancos de dados configurados, um para o spring batch e outro para aplicacao (com controle transacional manual)
  * utiliza log4j
  * disponivel no github
  * writer pega do banco de dados, processor transforma e writer persiste no banco de dados
