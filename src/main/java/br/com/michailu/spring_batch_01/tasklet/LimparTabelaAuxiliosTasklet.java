@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LimparTabelaAuxiliosTasklet extends JdbcDaoSupport implements Tasklet {
-	
+
 	private static final Logger LOGGER = LogManager.getLogger(LimparTabelaAuxiliosTasklet.class);
 
 	@Autowired
